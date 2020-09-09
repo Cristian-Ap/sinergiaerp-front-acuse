@@ -14,15 +14,15 @@
         <div class="breadcrumb">
             <p>Facturacion Electronica / Acuse Recibo</p>
         </div>
-        <p lang="es">La factura fue generada el día {{fecha}}</p>
+        <p lang="es">La factura fue generada el día <span lang="es">{{fecha}}</span></p>
         <p class="labels">Empresa</p>
         <p>{{empresa}}</p>
-        <p class="labels">Tipo</p>
+        <p class="labels">Tipo de Comprobante</p>
         <p>{{tipo}}</p>
         <p class="labels">Documento</p>
         <p>{{documento}}</p>
         <p class="labels">Fecha de Envio</p>
-        <p>{{envio}}</p>
+        <p>{{fecha}}</p>
         <p class="labels">Valor total</p>
         <p>{{total}}</p>
         <p class="labels">Estado</p>
@@ -30,7 +30,7 @@
             <ng-select
                 class="ng-select-state"
                 [items]="estado"
-                bindValue="name"
+                bindValue="id"
                 bindLabel="name"
                 [(ngModel)]="estadoSelected"
                 [disabled]="true"
@@ -40,7 +40,11 @@
             <button class="btn-print color-green">Descargar documento XML</button>
         </div>
         <p class="labels">Comentarios</p>
-        <textarea class="txtarea-coments" [(ngModel)]="comentario" [disabled]="invalidAcuse"></textarea>
+        <textarea class="txtarea-coments"
+                  [(ngModel)]="comentario"
+                  [disabled]="invalidAcuse"
+                  style="resize: none;">
+        </textarea>
         <div class="btn-send" (click)="enviar()" *ngIf="!invalidAcuse">
             Enviar
         </div>
