@@ -1,0 +1,63 @@
+<div class="loader" *ngIf="loading">
+    <h1>Cargando</h1>
+</div>
+<div class="container">
+    <div class="header">
+        <div class="header-logo">
+            <img class="logo" src="../assets/image/descarga.png" >
+        </div>
+    </div>
+    <div class="under-header">
+        <p class="header-title">{{title}}</p>
+    </div>
+    <div class="content">
+        <div class="breadcrumb">
+            <p>Facturacion Electronica / Acuse Recibo</p>
+        </div>
+        <p lang="es">La factura fue generada el día {{fecha}}</p>
+        <p class="labels">Empresa</p>
+        <p>{{empresa}}</p>
+        <p class="labels">Tipo</p>
+        <p>{{tipo}}</p>
+        <p class="labels">Documento</p>
+        <p>{{documento}}</p>
+        <p class="labels">Fecha de Envio</p>
+        <p>{{envio}}</p>
+        <p class="labels">Valor total</p>
+        <p>{{total}}</p>
+        <p class="labels">Estado</p>
+        <div class="btn-select-div">
+            <ng-select
+                class="ng-select-state"
+                [items]="estado"
+                bindValue="name"
+                bindLabel="name"
+                [(ngModel)]="estadoSelected"
+                [disabled]="true"
+                [disabled]="invalidAcuse">
+            </ng-select>
+            <button class="btn-print color-red">Descargar documento PDF</button>
+            <button class="btn-print color-green">Descargar documento XML</button>
+        </div>
+        <p class="labels">Comentarios</p>
+        <textarea class="txtarea-coments" [(ngModel)]="comentario" [disabled]="invalidAcuse"></textarea>
+        <div class="btn-send" (click)="enviar()" *ngIf="!invalidAcuse">
+            Enviar
+        </div>
+    </div>
+    <div class="footer">
+        <p>®Tecnologia Sinergia S.A.S</p>
+    </div>
+</div>
+<div class="acuse-success" *ngIf="stateSuccess">
+    <div>
+        <h1>Acuse Enviado</h1>
+        <p>{{succesmessage}}</p>
+    </div>
+</div>
+<div class="acuse-fail" *ngIf="stateFail">
+    <div>
+        <h1>Algo salio mal</h1>
+        <p>{{errormessage}}</p>
+    </div>
+</div>

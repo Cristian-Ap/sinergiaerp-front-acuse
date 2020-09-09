@@ -1,0 +1,148 @@
+p{
+    font-family: sans-serif;
+    margin: 0.3%;
+}
+h1{
+    font-family: sans-serif;
+    font-weight: bold;
+}
+.loader{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+.container{
+    width: 100%;
+    height: 100%;
+}
+.header{
+    height: 35%;
+    background-color: #15364e;
+    display: flex;
+    align-items: center;
+    padding: 0.5%;
+}
+.header-logo{
+    width: 10%;
+    height: 100%;
+}
+.logo{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.under-header{
+    padding: 0.4%;
+    background-color: lightgrey;
+    text-align: end;
+}
+.header-title{
+    padding-right: 1%;
+    color: white;
+    font-size: 19px;
+}
+.content{
+    padding: 2%;
+}
+.breadcrumb{
+    background-color: #eaeaea;
+    padding: 0.5%;  
+    margin-bottom: 1%;
+}
+.labels{
+    color: black;
+    font-weight: bold;
+    margin-top: 0.9%;
+    margin-bottom: 0.9%;
+}
+.infos{
+    color: black;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+.ng-select-state{
+    width: 200px;
+    margin-bottom: 1%;
+    font-family: sans-serif;
+    margin-right: auto;
+}
+.btn-select-div{
+    display: flex;
+}
+.btn-print{
+    height: fit-content;
+    width: fit-content;
+    padding: 6px;
+    color: white;
+    border: 1px solid gray;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.color-red{
+    background-color: red;
+}
+.color-green{
+    background-color: green;
+}
+.txtarea-coments{
+    width: 99%;
+    height: 37px;
+    background-color: #f1f1f1;
+    border: 1px solid lightgray;
+    font-family: sans-serif;
+    padding: 1%;
+    margin-bottom: 1%;
+}
+.btn-send{
+    padding: 10px;
+    background-color: lightgreen;
+    width: fit-content;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-send:hover{
+    background-color: green;
+}
+.btn-send:active{
+    background-color: darkgreen;
+}
+.footer{
+    background-color: #15364e;
+    color: white;
+    text-align: center;
+    padding: 0.2%;
+}
+.acuse-success{
+    background-color: lightgreen;
+    color: Black;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.acuse-fail{
+    background-color: lightsalmon;
+    color: white;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
