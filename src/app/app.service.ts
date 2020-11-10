@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { GLOBAL } from './global'
 
 @Injectable({
     providedIn:'root'
 })
 export class appService{
-    private url = "http://dev.nuevoerp.co:8017/api/";
+    private url = GLOBAL.url;
 
     constructor(
         private http : HttpClient){}
@@ -17,7 +18,7 @@ export class appService{
         });
         return this.http.post(`${this.url}facelectro/getSingle/${token}`,{ headers: headers });
     }
-    
+
     actualizarAcuse(id: number, data: object): Observable<any>{
         const headers = new HttpHeaders({
             'Content-type' : 'application/x-www-form-urlencoded',
