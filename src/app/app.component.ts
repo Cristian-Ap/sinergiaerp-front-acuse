@@ -55,10 +55,11 @@ export class AppComponent implements OnInit{
           this.empresa = data[0].empresa
           this.tipo = data[0].tipo_comprobante
           this.documento = data[0].documento
-          this.total = this.formatearNumero(data[0].total,',','.',2,true)
+          this.total = this.formatearNumero(data[0].total,',','.',2,true) == "$ null" ? '$0.00' : this.formatearNumero(data[0].total,',','.',2,true) 
           this.estadoAcuse = data[0].estado_acuse
           this.loading = false
           this.fecha = this.formatFecha(data[0].fecha_acuse)
+          this.comentario = data[0].comentario_acuse
           if(this.estadoAcuse != 42550){
             this.invalidAcuse = true
           }

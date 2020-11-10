@@ -1,55 +1,98 @@
 <div class="loader" *ngIf="loading">
     <h1>Cargando</h1>
 </div>
-<div class="container">
+<div class="container-acuse">
     <div class="header">
         <div class="header-logo">
-            <img class="logo" src="../assets/image/descarga.png" >
+            <img class="logo" src="../assets/image/sihos.png" >
         </div>
-    </div>
-    <div class="under-header">
-        <p class="header-title">{{title}}</p>
+        <p class="header-title">SIHOS | Sistema de información</p>
     </div>
     <div class="content">
+        
         <div class="breadcrumb">
-            <p>Facturacion Electronica / Acuse Recibo</p>
+            <p class="labels">Facturacion Electronica / Acuse Recibo</p>
+            <p class="labels">Fecha de envio {{fecha}}</p>
         </div>
-        <p lang="es">La factura fue generada el día <span lang="es">{{fecha}}</span></p>
-        <p class="labels">Empresa</p>
-        <p>{{empresa}}</p>
-        <p class="labels">Tipo de Comprobante</p>
-        <p>{{tipo}}</p>
-        <p class="labels">Documento</p>
-        <p>{{documento}}</p>
-        <p class="labels">Fecha de Envio</p>
-        <p>{{fecha}}</p>
-        <p class="labels">Valor total</p>
-        <p>{{total}}</p>
-        <p class="labels">Estado</p>
-        <div class="btn-select-div">
-            <ng-select
-                class="ng-select-state"
-                [items]="estado"
-                bindValue="id"
-                bindLabel="name"
-                [(ngModel)]="estadoSelected"
-                [disabled]="true"
-                [disabled]="invalidAcuse">
-            </ng-select>
-            <button class="btn-print color-red">Descargar documento PDF</button>
-            <button class="btn-print color-green">Descargar documento XML</button>
+    
+        <div class="row pb-2">
+            <div class="col-12 col-sm-12">
+                <p lang="es">La factura fue generada el día <span lang="es">{{fecha}}</span></p>
+            </div>
         </div>
-        <p class="labels">Comentarios</p>
-        <textarea class="txtarea-coments"
-                  [(ngModel)]="comentario"
-                  [disabled]="invalidAcuse"
-                  style="resize: none;">
-        </textarea>
-        <div class="btn-send" (click)="enviar()" *ngIf="!invalidAcuse">
+       
+        <div class="row pb-2">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6">
+                <p class="labels">Empresa</p>
+            </div>
+            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-6 col-6">
+                <p>{{empresa}}</p>
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6">
+                <p class="labels">Documento</p>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6">
+                <p>{{documento}}</p>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6">
+                <p class="labels">Tipo de comprobante</p>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6">
+                <p>{{tipo}}</p>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6">
+                <p class="labels">Fecha documento</p>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6">
+                <p>{{fecha}}</p>
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6">
+                <p class="labels">Valor total</p>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-3 col-sm-6 col-6">
+                <p>{{total}}</p>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-7 col-sm-12 col-12 btn-select-div">
+                <button class="btn btn-danger mr-2">Descargar documento PDF</button>
+                <button class="btn btn-success">Descargar documento XML</button>
+            </div>
+        </div>
+        <div class="row pb-2">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6">
+                <p class="labels">Estado</p>
+            </div>
+            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-6 col-6">
+                <ng-select
+                    class="ng-select-state"
+                    [items]="estado"
+                    bindValue="id"
+                    bindLabel="name"
+                    [(ngModel)]="estadoSelected"
+                    [disabled]="true"
+                    [disabled]="invalidAcuse">
+                </ng-select>
+            </div>
+        </div>
+        
+        <div class="row pb-2">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <p class="labels">Comentarios</p>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="comentario"
+                [disabled]="invalidAcuse"></textarea>
+            </div>
+        </div>
+            
+        <div class="btn-send mt-3" (click)="enviar()" *ngIf="!invalidAcuse">
             Enviar
         </div>
     </div>
-    <div class="footer">
+    <div class="footer mt-4 pt-3">
         <p>®Tecnologia Sinergia S.A.S</p>
     </div>
 </div>
