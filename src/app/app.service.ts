@@ -20,10 +20,10 @@ export class appService{
         return this.http.post(`${this.url}facelectro/getSingle/${token}`,{ headers: headers });
     }
 
-    actualizarAcuse(id: number, data: object): Observable<any>{
+    actualizarAcuse(token:string, data: object): Observable<any>{
         const headers = new HttpHeaders({
             'Content-type' : 'application/x-www-form-urlencoded',
         });
-        return this.http.post(`${this.url}facelectro/updateSingle/${id}`, "json="+JSON.stringify(data) , { headers: headers })
+        return this.http.post(`${this.url}facelectro/updateSingle/${token}`, "json="+JSON.stringify(data) , { headers: headers })
     }
 }

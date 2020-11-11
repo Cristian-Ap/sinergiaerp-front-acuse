@@ -115,11 +115,12 @@ export class AppComponent implements OnInit{
       alert('Escriba un comentario, por favor.')
       return
     }
+
     this.data = {
       estado_acuse: this.estadoSelected,
       comentario_acuse: this.comentario
     }
-    this.AppService.actualizarAcuse(this.id, this.data).subscribe((data)=>{
+    this.AppService.actualizarAcuse(this.token, this.data).subscribe((data)=>{
       if( data == 1){
         this.stateSuccess = true
       }else{
