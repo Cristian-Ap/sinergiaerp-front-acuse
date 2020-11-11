@@ -9,18 +9,18 @@
         <p class="header-title">SIHOS | Sistema de información</p>
     </div>
     <div class="content">
-        
+
         <div class="breadcrumb">
             <p class="labels">Facturacion Electronica / Acuse Recibo</p>
             <p class="labels">Fecha de envio {{fecha}}</p>
         </div>
-    
+
         <div class="row pb-2">
             <div class="col-12 col-sm-12">
                 <p lang="es">La factura fue generada el día <span lang="es">{{fecha}}</span></p>
             </div>
         </div>
-       
+
         <div class="row pb-2">
             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6">
                 <p class="labels">Empresa</p>
@@ -58,7 +58,9 @@
             </div>
             <div class="col-xl-4 col-lg-4 col-md-7 col-sm-12 col-12 btn-select-div">
                 <button class="btn btn-danger mr-2">Descargar documento PDF</button>
-                <button class="btn btn-success">Descargar documento XML</button>
+                <a class="btn btn-success" [href]="fileUrl" download="{{documento}}.xml">
+                  Descargar documento XML
+                </a>
             </div>
         </div>
         <div class="row pb-2">
@@ -77,7 +79,7 @@
                 </ng-select>
             </div>
         </div>
-        
+
         <div class="row pb-2">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <p class="labels">Comentarios</p>
@@ -87,7 +89,7 @@
                 [disabled]="invalidAcuse"></textarea>
             </div>
         </div>
-            
+
         <div class="btn-send mt-3" (click)="enviar()" *ngIf="!invalidAcuse">
             Enviar
         </div>

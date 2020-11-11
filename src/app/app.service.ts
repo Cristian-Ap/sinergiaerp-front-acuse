@@ -13,6 +13,7 @@ export class appService{
         private http : HttpClient){}
 
     obtenerDatos(token: string): Observable<any>{
+        console.log(token);
         const headers = new HttpHeaders({
             'Content-type' : 'application/x-www-form-urlencoded',
         });

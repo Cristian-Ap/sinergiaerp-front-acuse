@@ -2,6 +2,7 @@ import { Component, OnInit, ɵConsole } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { appService } from './app.service';
 import * as moment from 'moment';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ export class AppComponent implements OnInit{
   public documento = "ACMUNPT666000";
   public total = "$ 10.000,00";
   public estado = [{id: 42551, name: 'Aceptada'}, {id: 42552, name: 'Rechazada'}];
+  public xmlFile:string;
 
   public errormessage = "No hay conexion con la base de datos";
   public succesmessage = "Acuse enviado con exito"
@@ -33,37 +35,44 @@ export class AppComponent implements OnInit{
   private data = {};
   private estadoAcuse;
   public invalidAcuse = false;
+  public fileUrl;
 
   constructor(
     private rutaActiva: ActivatedRoute,
-    private AppService: appService
+    private AppService: appService,
+    private sanitizer: DomSanitizer
   ){}
 
   ngOnInit(): void {
-    setTimeout(()=>{
-      if(this.token == '' || this.token == undefined){
-        this.stateFail = true;
-        this.loading = false;
-        this.errormessage = "Token de auntenticación no encontrado"
-      }
-    },5000)
+    var that = this;
     this.rutaActiva.queryParams.subscribe(params => {
-      this.token = params['token'];
-      this.AppService.obtenerDatos(this.token).subscribe((data) =>{
+      that.token = params['token'];
+      console.log(that.token);
+      this.AppService.obtenerDatos(that.token).subscribe((data) =>{
         if(data != "" ){
-          this.id = data[0].id
-          this.empresa = data[0].empresa
-          this.tipo = data[0].tipo_comprobante
-          this.documento = data[0].documento
-          this.total = this.formatearNumero(data[0].total,',','.',2,true) == "$ null" ? '$0.00' : this.formatearNumero(data[0].total,',','.',2,true) 
-          this.estadoAcuse = data[0].estado_acuse
+          this.stateFail = false;
+          this.loading = false;
+          this.id = data.id
+          this.empresa = data.empresa
+          this.tipo = data.tipo_comprobante
+          this.documento = data.documento
+          this.total = this.formatearNumero(data.total,',','.',2,true) == "$ null" ? '$0.00' : this.formatearNumero(data.total,',','.',2,true)
+          this.estadoAcuse = data.estado_acuse
           this.loading = false
-          this.fecha = this.formatFecha(data[0].fecha_acuse)
-          this.comentario = data[0].comentario_acuse
+          this.fecha = this.formatFecha(data.fecha_acuse);
+          this.comentario = data.comentario_acuse;
+          this.xmlFile = data.archivo_adjunto_xml;
           if(this.estadoAcuse != 42550){
             this.invalidAcuse = true
           }
+          let blob = new Blob([atob(this.xmlFile)], { type: 'application/octet-stream' });
+
+          this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
         }
+      }, err => {
+        this.stateFail = true;
+        this.loading = false;
+        this.errormessage = "Token de auntenticación no encontrado";
       })
     });
   }
@@ -95,7 +104,7 @@ export class AppComponent implements OnInit{
         }
     }
     return '';
-}
+  }
 
   enviar(){
     if(this.estadoSelected == '' || this.estadoSelected == undefined){

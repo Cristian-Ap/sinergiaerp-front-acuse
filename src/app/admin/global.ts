@@ -1,3 +1,3 @@
 export let GLOBAL = {
-    url: 'http://back-qa.nuevoerp.co/api/'
+    url: 'http://dev.nuevoerp.co:8005/api/'
 };
